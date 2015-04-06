@@ -87,22 +87,6 @@ public class LoginFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.com_facebook_login_fragment, container, false);
-
-        loginClient.setBackgroundProcessingListener(
-                new LoginClient.BackgroundProcessingListener() {
-            @Override
-            public void onBackgroundProcessingStarted() {
-                view.findViewById(
-                        R.id.com_facebook_login_activity_progress_bar).setVisibility(View.VISIBLE);
-            }
-
-            @Override
-            public void onBackgroundProcessingStopped() {
-                view.findViewById(
-                        R.id.com_facebook_login_activity_progress_bar).setVisibility(View.GONE);
-            }
-        });
-
         return view;
     }
 
@@ -136,14 +120,6 @@ public class LoginFragment extends Fragment {
         }
 
         loginClient.startOrContinueAuth(request);
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-
-        getActivity().findViewById(R.id.com_facebook_login_activity_progress_bar).setVisibility(
-                View.GONE);
     }
 
     @Override
